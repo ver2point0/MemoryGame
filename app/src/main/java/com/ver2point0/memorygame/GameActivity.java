@@ -119,19 +119,19 @@ public class GameActivity extends AppCompatActivity implements
                             break;
                         case 2:
                             // hide a button
-                            mButton1.setVisibility(View.INVISIBLE);
+                            mButton2.setVisibility(View.INVISIBLE);
                             // play sound
                             mSoundPool.play(sample2, 1, 1, 0, 0, 1);
                             break;
                         case 3:
                             // hide a button
-                            mButton1.setVisibility(View.INVISIBLE);
+                            mButton3.setVisibility(View.INVISIBLE);
                             // play sound
                             mSoundPool.play(sample3, 1, 1, 0, 0, 1);
                             break;
                         case 4:
                             // hide a button
-                            mButton1.setVisibility(View.INVISIBLE);
+                            mButton4.setVisibility(View.INVISIBLE);
                             // play sound
                             mSoundPool.play(sample4, 1, 1, 0, 0, 1);
                             break;
@@ -150,7 +150,59 @@ public class GameActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
+        if (!playSequence) {
+            switch (view.getId()) {
+                case R.id.bt_one:
+                    // play sound
+                    mSoundPool.play(sample1, 1, 1, 0, 0, 1);
+                    checkElement(1);
+                    break;
+                case R.id.bt_two:
+                    // play sound
+                    mSoundPool.play(sample2, 1, 1, 0, 0, 1);
+                    checkElement(2);
+                    break;
+                case R.id.bt_three:
+                    // play sound
+                    mSoundPool.play(sample3, 1, 1, 0, 0, 1);
+                    checkElement(3);
+                    break;
+                case R.id.bt_four:
+                    // play sound
+                    mSoundPool.play(sample4, 1, 1, 0, 0, 1);
+                    checkElement(4);
+                    break;
+                case R.id.bt_replay:
+                    difficultyLevel = 3;
+                    playerScore = 0;
+                    mTextScore.setText("Score: " + playerScore);
+                    playASequence();
+                    break;
+            }
+        }
+    }
 
+    public void checkElement(int thisElement) {
+        if (isResponding) {
+            playerResponses++;
+            if (sequenceToCopy[playerResponses - 1] == thisElement) { // correct
+                playerScore = playerScore + ( (thisElement + 1) * 2);
+                mTextScore.setText("Score: " + playerScore);
+
+                if (playerResponses == difficultyLevel) { // received whole sequence
+                    // don't checkElement anymore
+                    isResponding = false;
+                    // raise difficulty
+                    difficultyLevel++;
+                    // play another sequence
+                    playASequence();
+                }
+            } else { // wrong answer
+                mTextWatchGo.setText("FAILED!");
+                // don't checkElement anymore
+                isResponding = false;
+            }
+        }
     }
 
     public void createSequence() {
