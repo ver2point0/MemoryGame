@@ -1,5 +1,6 @@
 package com.ver2point0.memorygame;
 
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Random;
@@ -18,6 +20,16 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements
         View.OnClickListener {
+
+    // page 201
+
+    // for hiscore
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    String dataName = "MyData";
+    String intName = "MyInt";
+    int defaultInt = 0;
+    int hiScore;
 
     // initialize sound variables
     private SoundPool mSoundPool;
@@ -58,6 +70,10 @@ public class GameActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        prefs = getSharedPreferences(dataName, MODE_PRIVATE);
+        editor = prefs.edit();
+        hiScore = prefs.getInt(intName, defaultInt);
+
         mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         try {
             // create 2 required classes
@@ -81,7 +97,7 @@ public class GameActivity extends AppCompatActivity implements
         }
 
         // reference UI elements
-        mTextScore = (TextView) findViewById(R.id.tv_score);
+        mTextScore = (TextView) findViewById(R.id.tv_score_game);
         mTextScore.setText("Score: " + playerScore);
         mTextDifficulty = (TextView) findViewById(R.id.tv_difficulty);
         mTextDifficulty.setText("Level: " + difficultyLevel);
@@ -201,6 +217,14 @@ public class GameActivity extends AppCompatActivity implements
                 mTextWatchGo.setText("FAILED!");
                 // don't checkElement anymore
                 isResponding = false;
+
+                if (playerScore > hiScore) {
+                    hiScore = playerScore;
+                    editor.putInt(intName, hiScore);
+                    editor.commit();
+                    Toast.makeText(getApplicationContext(), "New Hi-score",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

@@ -30,8 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="High Score:"
-        android:id="@+id/tv_high_score"
+        android:text="High Score: 0"
+        android:id="@+id/tv_high_score_main"
         android:layout_below="@+id/iv_game_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"/>
@@ -42,6 +42,6 @@
         android:text="PLAY!"
         android:id="@+id/bt_play"
         android:layout_marginTop="56dp"
-        android:layout_below="@+id/tv_high_score"
+        android:layout_below="@+id/tv_high_score_main"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
