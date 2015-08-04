@@ -21,6 +21,8 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity implements
         View.OnClickListener {
 
+    // page 201
+
     // for hiscore
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
