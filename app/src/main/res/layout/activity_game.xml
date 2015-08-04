@@ -12,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Score: 0"
         android:textSize="50sp"
-        android:id="@+id/tv_score"
+        android:id="@+id/tv_score_game"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>
@@ -23,7 +23,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Difficulty: 1"
         android:id="@+id/tv_difficulty"
-        android:layout_below="@+id/tv_score"
+        android:layout_below="@+id/tv_score_game"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"/>
 
