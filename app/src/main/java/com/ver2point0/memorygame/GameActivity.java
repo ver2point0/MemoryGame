@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +23,8 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity implements
         View.OnClickListener {
 
-    // page 201
+    // animation
+    Animation wobble;
 
     // for hiscore
     SharedPreferences prefs;
@@ -69,6 +72,8 @@ public class GameActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        wobble = AnimationUtils.loadAnimation(this, R.anim.wobble);
 
         prefs = getSharedPreferences(dataName, MODE_PRIVATE);
         editor = prefs.edit();
@@ -121,33 +126,37 @@ public class GameActivity extends AppCompatActivity implements
                 super.handleMessage(msg);
 
                 if (playSequence) {
-                    mButton1.setVisibility(View.VISIBLE);
-                    mButton2.setVisibility(View.VISIBLE);
-                    mButton3.setVisibility(View.VISIBLE);
-                    mButton4.setVisibility(View.VISIBLE);
+//                    mButton1.setVisibility(View.VISIBLE);
+//                    mButton2.setVisibility(View.VISIBLE);
+//                    mButton3.setVisibility(View.VISIBLE);
+//                    mButton4.setVisibility(View.VISIBLE);
 
                     switch (sequenceToCopy[elementToPlay]) {
                         case 1:
                             // hide a button
-                            mButton1.setVisibility(View.INVISIBLE);
+//                            mButton1.setVisibility(View.INVISIBLE);
+                            mButton1.startAnimation(wobble);
                             // play sound
                             mSoundPool.play(sample1, 1, 1, 0, 0, 1);
                             break;
                         case 2:
                             // hide a button
-                            mButton2.setVisibility(View.INVISIBLE);
+//                            mButton2.setVisibility(View.INVISIBLE);
+                            mButton2.startAnimation(wobble);
                             // play sound
                             mSoundPool.play(sample2, 1, 1, 0, 0, 1);
                             break;
                         case 3:
                             // hide a button
-                            mButton3.setVisibility(View.INVISIBLE);
+//                            mButton3.setVisibility(View.INVISIBLE);
+                            mButton3.startAnimation(wobble);
                             // play sound
                             mSoundPool.play(sample3, 1, 1, 0, 0, 1);
                             break;
                         case 4:
                             // hide a button
-                            mButton4.setVisibility(View.INVISIBLE);
+//                            mButton4.setVisibility(View.INVISIBLE);
+                            mButton4.startAnimation(wobble);
                             // play sound
                             mSoundPool.play(sample4, 1, 1, 0, 0, 1);
                             break;
@@ -250,10 +259,10 @@ public class GameActivity extends AppCompatActivity implements
 
     public void sequenceFinished() {
         playSequence = false;
-        mButton1.setVisibility(View.VISIBLE);
-        mButton2.setVisibility(View.VISIBLE);
-        mButton3.setVisibility(View.VISIBLE);
-        mButton4.setVisibility(View.VISIBLE);
+//        mButton1.setVisibility(View.VISIBLE);
+//        mButton2.setVisibility(View.VISIBLE);
+//        mButton3.setVisibility(View.VISIBLE);
+//        mButton4.setVisibility(View.VISIBLE);
         mTextWatchGo.setText("GO!");
         isResponding = true;
     }
