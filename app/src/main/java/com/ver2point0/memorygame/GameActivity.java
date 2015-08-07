@@ -53,7 +53,7 @@ public class GameActivity extends AppCompatActivity implements
     Button mButtonReplay;
 
     // variables for thread
-    int difficultyLevel = 3;
+    int difficultyLevel = 1;
     // array for randomly generated sequence
     int[] sequenceToCopy = new int[100];
 
@@ -105,7 +105,7 @@ public class GameActivity extends AppCompatActivity implements
         mTextScore = (TextView) findViewById(R.id.tv_score_game);
         mTextScore.setText("Score: " + playerScore);
         mTextDifficulty = (TextView) findViewById(R.id.tv_difficulty);
-        mTextDifficulty.setText("Level: " + difficultyLevel);
+        mTextDifficulty.setText("Difficulty: " + difficultyLevel);
         mTextWatchGo = (TextView) findViewById(R.id.tv_watch_go);
 
         mButton1 = (Button) findViewById(R.id.bt_one);
@@ -116,7 +116,7 @@ public class GameActivity extends AppCompatActivity implements
 
         mButton1.setOnClickListener(this);
         mButton2.setOnClickListener(this);
-        mButton2.setOnClickListener(this);
+        mButton3.setOnClickListener(this);
         mButton4.setOnClickListener(this);
         mButtonReplay.setOnClickListener(this);
 
@@ -198,7 +198,7 @@ public class GameActivity extends AppCompatActivity implements
                     checkElement(4);
                     break;
                 case R.id.bt_replay:
-                    difficultyLevel = 3;
+                    difficultyLevel = 1;
                     playerScore = 0;
                     mTextScore.setText("Score: " + playerScore);
                     playASequence();
@@ -266,6 +266,4 @@ public class GameActivity extends AppCompatActivity implements
         mTextWatchGo.setText("GO!");
         isResponding = true;
     }
-
-
 }
