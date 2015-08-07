@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements
     String intName = "MyString";
     int defaultInt = 0;
     // for both activities
-    public static int hiScore;
+    public static int hiScoreMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity implements
         prefs = getSharedPreferences(dataName, MODE_PRIVATE);
 
         // load high score or default to 0
-        hiScore = prefs.getInt(intName, defaultInt);
+        hiScoreMain = prefs.getInt(intName, defaultInt);
 
         TextView textHiScore = (TextView) findViewById(R.id.tv_high_score_main);
-        textHiScore.setText("Hi Score: " + hiScore);
+        textHiScore.setText("Hi Score: " + hiScoreMain);
 
         Button playButton = (Button) findViewById(R.id.bt_play);
         playButton.setOnClickListener(this);
