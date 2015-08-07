@@ -199,6 +199,7 @@ public class GameActivity extends AppCompatActivity implements
                     break;
                 case R.id.bt_replay:
                     difficultyLevel = 1;
+                    mTextDifficulty.setText("Difficulty: " + difficultyLevel);
                     playerScore = 0;
                     mTextScore.setText("Score: " + playerScore);
                     playASequence();
@@ -219,6 +220,7 @@ public class GameActivity extends AppCompatActivity implements
                     isResponding = false;
                     // raise difficulty
                     difficultyLevel++;
+                    mTextDifficulty.setText("Difficulty: " + difficultyLevel);
                     // play another sequence
                     playASequence();
                 }
