@@ -1,5 +1,5 @@
 # Replay
-A Simon-like game to match a specific sequence and score.
+A Simon-like game to match a specific sequence and score points.
 
 | Press "Play!" to play| Press "Replay" to start a sequence|
 | ------------- | ----------- |
